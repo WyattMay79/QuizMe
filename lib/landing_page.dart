@@ -12,7 +12,7 @@ class LandingPage extends StatelessWidget {
           Image.asset(
             'assets/images/quiz-logo.png',
             width: 275,
-            height: 350,
+            color: const Color.fromARGB(200, 255, 255, 255),
           ),
           const SizedBox(
             height: 250,
@@ -26,14 +26,15 @@ class LandingPage extends StatelessWidget {
               ),
             ),
           ),
-          OutlinedButton(
+          OutlinedButton.icon(
             onPressed: () {
               debugPrint('Received click');
             },
             style: ButtonStyle(
               minimumSize: WidgetStateProperty.all(const Size(215, 75)),
             ),
-            child: const Text(
+            icon: const Icon(Icons.arrow_right_alt, color: Colors.white,),
+            label: const Text(
               'Start Quiz',
               style: TextStyle(
                 color: Colors.white,
