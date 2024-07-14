@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatelessWidget {
-  const LandingPage({super.key});
+  const LandingPage(this.startQuiz, {super.key});
+
+  final void Function() startQuiz;
 
   @override
   Widget build(context) {
@@ -28,6 +30,7 @@ class LandingPage extends StatelessWidget {
           ),
           OutlinedButton.icon(
             onPressed: () {
+              startQuiz();
               debugPrint('Received click');
             },
             style: ButtonStyle(
