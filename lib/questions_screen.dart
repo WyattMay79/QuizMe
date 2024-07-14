@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_me/answer_btn.dart';
 import 'package:quiz_me/data/questions.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -12,15 +13,15 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsState extends State<QuestionsScreen> {
-  var currState = 0;
+  var currQuestionIndex = 0;
 
-  void questionsBtn() {
-    setState(() => currState += 1);
+  void answerQuestion() {
+    setState(() => currQuestionIndex++);
   }
 
   @override
   Widget build(context) {
-    final currQuestion = questions[0];
+    final currQuestion = questions[currQuestionIndex];
 
     return Center(
       child: Container(
@@ -31,9 +32,10 @@ class _QuestionsState extends State<QuestionsScreen> {
           children: [
             Text(
               currQuestion.text,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
+              style: GoogleFonts.lato(
+                color: const Color.fromARGB(255, 237, 223, 252),
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),
@@ -44,7 +46,7 @@ class _QuestionsState extends State<QuestionsScreen> {
               (answer) {
                 return AnswerBtn(
                   answerText: answer,
-                  onTap: () {},
+                  onTap: answerQuestion,
                 );
               },
             ),
