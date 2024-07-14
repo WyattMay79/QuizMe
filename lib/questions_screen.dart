@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_me/answer_btn.dart';
+import 'package:quiz_me/data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -18,61 +20,36 @@ class _QuestionsState extends State<QuestionsScreen> {
 
   @override
   Widget build(context) {
+    final currQuestion = questions[0];
+
     return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Text(
-            'Text for Question:',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 22,
+      child: Container(
+        margin: const EdgeInsets.all(40),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              currQuestion.text,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+              textAlign: TextAlign.center,
             ),
-          ),
-          const SizedBox(
-            height: 150,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              debugPrint('Recieved click');
-            },
-            child: const Text('Some Text',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                )),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              debugPrint('Recieved click');
-            },
-            child: const Text('Some Text',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                )),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              debugPrint('Recieved click');
-            },
-            child: const Text('Some Text',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                )),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              debugPrint('Recieved click');
-            },
-            child: const Text('Some Text',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                )),
-          ),
-        ],
+            const SizedBox(
+              height: 40,
+            ),
+            ...currQuestion.getShuffleAnswers().map(
+              (answer) {
+                return AnswerBtn(
+                  answerText: answer,
+                  onTap: () {},
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
